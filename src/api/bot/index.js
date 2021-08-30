@@ -12,7 +12,7 @@ const slackbot = async (req, res) => {
     try {
       sendSlackMessage(channel, message)
 
-      const mailChimp = await noOfMailchimpSubscribers()
+      const mailChimp = noOfMailchimpSubscribers()
       mailChimp.then(response => {
         sendSlackMessage(channel, response.message)
       })

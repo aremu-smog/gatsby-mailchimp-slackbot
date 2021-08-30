@@ -15,8 +15,8 @@ const months = [
   "December",
 ]
 
-export const noOfMailchimpSubscribers = () => {
-  mailchimpAxiosInstance
+export const noOfMailchimpSubscribers = async () => {
+  await mailchimpAxiosInstance
     .get("/lists")
     .then(response => {
       const { lists } = response
