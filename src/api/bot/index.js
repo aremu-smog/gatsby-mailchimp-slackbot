@@ -12,11 +12,12 @@ const slackbot = async (req, res) => {
     try {
       sendSlackMessage(channel, message)
 
-      const mailChimp = noOfMailchimpSubscribers()
+      // const mailChimp =
+      noOfMailchimpSubscribers(channel)
 
-      if (mailChimp.status === 200) {
-        sendSlackMessage(channel, mailChimp.message)
-      }
+      // if (mailChimp.status === 200) {
+      //   sendSlackMessage(channel, mailChimp.message)
+      // }
     } catch (error) {
       res.status(500).json({ message: error.message })
       console.log(error.message)

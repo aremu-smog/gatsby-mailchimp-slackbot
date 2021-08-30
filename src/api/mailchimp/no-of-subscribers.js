@@ -1,3 +1,4 @@
+import { sendSlackMessage } from "../slack/send-message"
 import { mailchimpAxiosInstance } from "./axiosInstance"
 
 const months = [
@@ -15,7 +16,7 @@ const months = [
   "December",
 ]
 
-export const noOfMailchimpSubscribers = async () => {
+export const noOfMailchimpSubscribers = async channel => {
   await mailchimpAxiosInstance
     .get("/lists")
     .then(response => {
@@ -34,12 +35,14 @@ export const noOfMailchimpSubscribers = async () => {
 
       const message = `${name} has *${member_count}* subscribers as at ${date_updated_parsed}`
 
-      return {
-        status: 200,
-        message: message,
-      }
+      sendSlackMessage(channel, message)
+      //   return {
+      //     status: 200,
+      //     message: message,
+      //   }
     })
     .catch(error => {
+      sendSlackMessage(channel, "Couldn't get the data")
       return {
         status: 500,
         message: error.message,
