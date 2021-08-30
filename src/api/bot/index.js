@@ -6,7 +6,7 @@ const slackbot = async (req, res) => {
 
   const { event } = req.body
   const { text, user, channel } = event
-  const message = `<@${user}> the total no of subscribers is 10`
+  const message = `<@${user}> coming straight up!`
 
   if (requestMethod === "POST") {
     try {
@@ -18,7 +18,7 @@ const slackbot = async (req, res) => {
       })
     } catch (error) {
       res.status(500).json({ message: error.message })
-      console.log("There is an error")
+      console.log(error.message)
     }
   }
 
