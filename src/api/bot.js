@@ -15,7 +15,7 @@ const slackbot = async (req, res) => {
           text: `Coming straight up bro`,
         })
         .then(() => {
-          console.log("Got that bro")
+          console.log(body)
           res.status(200).json({ message: "Message sent" })
         })
     } catch (error) {
