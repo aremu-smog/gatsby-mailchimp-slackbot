@@ -1,9 +1,11 @@
 const slackbot = async (req, res) => {
   const requestMethod = req.method
 
+  const { challenge } = req.body
   if (requestMethod === "POST") {
     res.status(200).json({
-      message: "Welcome my friend🤖",
+      //   message: "Welcome my friend🤖",
+      challenge,
     })
   }
 
