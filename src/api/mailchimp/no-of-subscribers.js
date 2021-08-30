@@ -20,29 +20,27 @@ export const noOfMailchimpSubscribers = async channel => {
   await mailchimpAxiosInstance
     .get("lists")
     .then(response => {
-      console.log(response)
-      //   const lists = response.lists
+      const { lists } = response.data
 
-      //   const list = lists[0]
+      const list = lists[0]
 
-      //   console.log(list)
+      const { name, stats } = list
 
-      //   const { name, stats } = list
+      const { member_count, last_sub_date } = stats
 
-      //   const { member_count, last_sub_date } = stats
+      const date_updated = new Date(last_sub_date)
+      const date_updated_parsed = `${
+        months[date_updated.getMonth()]
+      } ${date_updated.getDate()}, ${date_updated.getFullYear()}`
 
-      //   const date_updated = new Date(last_sub_date)
-      //   const date_updated_parsed = `${
-      //     months[date_updated.getMonth()]
-      //   } ${date_updated.getDate()}, ${date_updated.getFullYear()}`
+      const message = `${name} has *${member_count}* subscribers as at ${date_updated_parsed}`
 
-      //   const message = `${name} has *${member_count}* subscribers as at ${date_updated_parsed}`
+      sendSlackMessage(channel, message)
 
-      //   sendSlackMessage(channel, message)
-      //   //   return {
-      //     status: 200,
-      //     message: message,
-      //   }
+      return {
+        status: 200,
+        message: message,
+      }
     })
     .catch(error => {
       sendSlackMessage(channel, error.message)

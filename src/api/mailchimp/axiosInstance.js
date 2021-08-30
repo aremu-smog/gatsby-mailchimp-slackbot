@@ -1,7 +1,6 @@
 const axios = require("axios")
 
 const API_KEY = process.env.MAILCHIMP_API_KEY
-const LIST_ID = process.env.MAILCHIMP_LIST_ID
 
 const API_KEY_ARRAY = API_KEY.split("-")
 

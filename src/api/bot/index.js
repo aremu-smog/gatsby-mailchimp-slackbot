@@ -4,12 +4,11 @@ import { sendSlackMessage } from "../slack/send-message"
 const slackbot = async (req, res) => {
   const requestMethod = req.method
 
-  const { event } = req.body
-  const { text, user, channel } = event
-  const message = `<@${user}> coming straight up!`
-
   if (requestMethod === "POST") {
     try {
+      const { event } = req.body
+      const { text, user, channel } = event
+      const message = `<@${user}> coming straight up!`
       sendSlackMessage(channel, message)
 
       // const mailChimp =
