@@ -22,7 +22,7 @@ export const noOfMailchimpSubscribers = async channel => {
     .then(response => {
       const { lists } = response
 
-      //   console.log(lists)
+      console.log(lists)
 
       const list = lists[0]
 
@@ -46,7 +46,7 @@ export const noOfMailchimpSubscribers = async channel => {
       //   }
     })
     .catch(error => {
-      sendSlackMessage(channel, "Couldn't get the data")
+      sendSlackMessage(channel, error.message)
       return {
         status: 500,
         message: error.message,
