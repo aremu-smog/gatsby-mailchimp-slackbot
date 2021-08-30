@@ -18,11 +18,15 @@ const months = [
 
 export const noOfMailchimpSubscribers = async channel => {
   await mailchimpAxiosInstance
-    .get("/lists")
+    .get("lists")
     .then(response => {
       const { lists } = response
 
+      //   console.log(lists)
+
       const list = lists[0]
+
+      console.log(list)
 
       const { name, stats } = list
 
