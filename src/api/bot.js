@@ -3,16 +3,18 @@ const { botAxiosInstance } = require("./axiosInstance")
 const slackbot = async (req, res) => {
   const requestMethod = req.method
 
-  const body = req.body
+  const { event } = req.body
 
-  //   const message = JSON.stringify(body)
+  const { text, user, channel } = event
+
+  const message = `<@${user}> the total no of subscribers is 10`
 
   if (requestMethod === "POST") {
     try {
       await botAxiosInstance
         .post(`chat.postMessage`, {
-          channel: `C02CQNV6HNW`,
-          text: `Coming straight up bro`,
+          channel,
+          text: message,
         })
         .then(() => {
           console.log(body)
