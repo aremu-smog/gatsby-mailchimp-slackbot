@@ -20,7 +20,7 @@ export const noOfMailchimpSubscribers = async channel => {
   await mailchimpAxiosInstance
     .get("lists")
     .then(response => {
-      const { lists } = response
+      const lists = response.lists
 
       console.log(lists)
 
